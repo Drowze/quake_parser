@@ -2,7 +2,7 @@ require 'minitest/autorun'
 require_relative '../parser.rb'
 
 class ParserTests < Minitest::Test
-  def setup 
+  def setup
     @parser = Parser.new '../games.log'
   end
 
@@ -11,10 +11,10 @@ class ParserTests < Minitest::Test
   end
 
   def test_kill_parser
-    str1 = "25:18 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT"
-    str2 = "4:37 Kill: 3 5 3: Isgalamido killed Assasinu Credi by MOD_MACHINEGUN"
-    str3 = "5:52 Kill: 5 2 7: Assasinu Credi killed Dono da Bola by MOD_ROCKET_SPLASH"
-    
+    str1 = '25:18 Kill: 1022 2 22: <world> killed Isgalamido by MOD_TRIGGER_HURT'
+    str2 = '4:37 Kill: 3 5 3: Isgalamido killed Assasinu Credi by MOD_MACHINEGUN'
+    str3 = '5:52 Kill: 5 2 7: Assasinu Credi killed Dono da Bola by MOD_ROCKET_SPLASH'
+
     result1 = @parser.parse_kill_str str1
     result2 = @parser.parse_kill_str str2
     result3 = @parser.parse_kill_str str3
@@ -32,4 +32,3 @@ class ParserTests < Minitest::Test
     assert_equal 'MOD_ROCKET_SPLASH', result3[2]
   end
 end
-
