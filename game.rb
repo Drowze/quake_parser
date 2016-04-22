@@ -22,15 +22,15 @@ class Game
   end
 
   # rubocop:disable all
-  def display_game 
-    str = '{' + "\n" +
-            "\ttotal_kills: " + "#{@game['total_kills']}" + "\n" +
-            "\tplayers: " + "#{@game['players'].sort.to_s}" + "\n" +
-            "\tkills: {" + "\n" +
-              "\t\t#{@game['kills'].map{ |k,v| ret = "#{k}: #{v}"}.sort}" + "\n" +
-            "\t}" + "\n" +
-          "}"
-    str
-  end
+  # def display_game 
+  #   str = '{' + "\n" +
+  #           "\ttotal_kills: " + "#{@game['total_kills']}" + "\n" +
+  #           "\tplayers: " + "#{@game['players'].sort.to_s}" + "\n" +
+  #           "\tkills: {" + "\n" +
+  #             "\t\t#{@game['kills'].map{ |k,v| ret = "#{k}: #{v}"}.sort}" + "\n" +
+  #           "\t}" + "\n" +
+  #         "}"
+  #   str
+  # end
   # rubocop:enable all
 end
