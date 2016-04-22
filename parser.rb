@@ -6,8 +6,6 @@ class Parser
   def initialize(file)
     @games = []
     @txt_array = IO.readlines(file)
-
-    process_file
   end
 
   def process_file
@@ -36,7 +34,6 @@ class Parser
       end
       i += 1
     end
-    puts "game #{@games.size}: " + @games[-1].display_game
     i
   end
 
@@ -50,5 +47,3 @@ class Parser
     [killer, killed, mean_of_death]
   end
 end
-
-Parser.new 'games.log'
