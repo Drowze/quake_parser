@@ -20,6 +20,7 @@ class Parser
       end
       i += 1
     end
+    @games
   end
 
   def get_info_on_game(i)
@@ -27,22 +28,21 @@ class Parser
     kill_string = 'killed'
 
     until @txt_array[i].include? game_separator
-      @txt_array[i].include? kill_string and process_kill @txt_array[i]
+      if @txt_array[i].include? kill_string then 
+        parse_kill_str @txt_array[i]
+      end
       i += 1
     end
     i
   end
 
-  def process_kill(kill_str)
+  def parse_kill_str(kill_str)
     kill_str = kill_str.strip.split[5..-1].join(' ')
-    
+
     killer = kill_str.split('killed')[0].strip
     killed = kill_str[/#{"killed "}(.*?)#{" by"}/m, 1]
     mean_of_death = kill_str.split[-1]
 
-    puts "#{killer} ... #{killed} ... #{mean_of_death}"
-
+    return killer, killed, mean_of_death
   end
 end
-
-Parser.new 'games.log'
