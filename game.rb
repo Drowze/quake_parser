@@ -1,46 +1,43 @@
 class Game
-  attr_reader :game
+  attr_reader :data
 
   def initialize
-    @game = {}
+    @data = {}
 
-    @game['total_kills'] = 0
-    @game['players'] = []
-    @game['kills'] = {} # player => n kills
+    @data['total_kills'] = 0
+    @data['players'] = []
+    @data['kills'] = {} # player => n kills
+    @data['kill_by_means'] = {}
   end
 
   def add_kill_info(killer, killed, method)
-    include_new_players(killer, killed)
+    include_new_players killer, killed
+    include_kill_method method
 
-    @game['total_kills'] += 1
+    @data['total_kills'] += 1
     if killer == '<world>'
-      @game['kills'][killed] -= 1
+      @data['kills'][killed] -= 1
     else
-      @game['kills'][killer] += 1
+      @data['kills'][killer] += 1
     end
   end
 
   def include_new_players(killer, killed)
-    if !@game['players'].include? killer and killer != '<world>'
-      @game['players'] << killer
-      @game['kills'][killer] = 0
+    if !@data['players'].include? killer and killer != '<world>'
+      @data['players'] << killer
+      @data['kills'][killer] = 0
     end
-    if !@game['players'].include? killed
-      @game['players'] << killed
-      @game['kills'][killed] = 0
+    if !@data['players'].include? killed
+      @data['players'] << killed
+      @data['kills'][killed] = 0
     end
   end
 
-  # rubocop:disable all
-  # def display_game 
-  #   str = '{' + "\n" +
-  #           "\ttotal_kills: " + "#{@game['total_kills']}" + "\n" +
-  #           "\tplayers: " + "#{@game['players'].sort.to_s}" + "\n" +
-  #           "\tkills: {" + "\n" +
-  #             "\t\t#{@game['kills'].map{ |k,v| ret = "#{k}: #{v}"}.sort}" + "\n" +
-  #           "\t}" + "\n" +
-  #         "}"
-  #   str
-  # end
-  # rubocop:enable all
+  def include_kill_method(method)
+    if !@data['kill_by_means'].include? method
+      @data['kill_by_means'][method] = 1
+    else
+      @data['kill_by_means'][method] += 1
+    end
+  end
 end

@@ -35,9 +35,9 @@ class ParserTests < Minitest::Test
   def test_processor
     @parser.process_file
 
-    assert_equal 18, @parser.games[0].game['total_kills']
-    assert_equal 23, @parser.games[1].game['total_kills']
-    assert_equal 4, @parser.games[0].game['players'].size
-    assert_equal @parser.games[0].game['kills'].size, @parser.games[0].game['players'].size
+    assert_equal 18, @parser.games[0].data['total_kills']
+    assert_equal 23, @parser.games[1].data['total_kills']
+    assert_equal 4, @parser.games[0].data['players'].size
+    assert_equal @parser.games[0].data['kills'].size, @parser.games[0].data['players'].size
   end
 end
