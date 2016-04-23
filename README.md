@@ -37,6 +37,11 @@ game_1: {
         "Oootsimo": 1
         "Zeh": 0
     }
+    kills_by_means: {
+        "MOD_ROCKET": 2
+        "MOD_RAILGUN": 1
+        "MOD_SHOTGUN": 1
+    }
 }
 General Ranking:
 Mal: 2

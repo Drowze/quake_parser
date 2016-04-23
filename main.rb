@@ -1,4 +1,3 @@
-require 'pp'
 require_relative './parser.rb'
 require_relative './game.rb'
 
