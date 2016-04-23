@@ -10,8 +10,8 @@ ruby main.rb
 
 ## How it works?
 As soon as the parser finds a line with "InitGame: ", it creates a new Game object.  
-The following step is to search for lines with "killed", as long as there's still game left  
-The lines with "killed" are parsed individually to find the killer, the killed and the method. These informations are sent and managed to game.rb, which also checks if the killer is or not the <world> itself.
+The following step is to search for lines with "killed", as long as there's still game left (indicated by "-----"" string)  
+The lines with "killed" are parsed individually to find the killer, the killed and the method. These informations are sent and managed to game.rb, which also checks if the killer is or not the world itself.
 
 
 ## Practical example: 
