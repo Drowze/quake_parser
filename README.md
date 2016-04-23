@@ -1,10 +1,20 @@
 # Quake Log Parser
-This project is a simple but authoral Quake's games.log parser. To run it, simply leave the log in the same folder as main.rb and while on the same folder on terminal, type:
+This project is a simple but authoral Quake's games.log parser. 
+
+## How to run
+To run it, simply leave the log in the same folder as main.rb and while on the same folder on terminal, type:
 
 ````sh
 ruby main.rb
 ````
 
+## How it works?
+As soon as the parser finds a line with "InitGame: ", it creates a new Game object.  
+The following step is to search for lines with "killed", as long as there's still game left  
+The lines with "killed" are parsed individually to find the killer, the killed and the method. These informations are sent and managed to game.rb, which also checks if the killer is or not the <world> itself.
+
+
+## Practical example: 
 For an example, the expected output for the simple log (ignore the timestamps):  
 ```
 0:00 InitGame: 
