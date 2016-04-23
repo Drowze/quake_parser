@@ -14,27 +14,27 @@ class GameTests < Minitest::Test
   end
 
   def test_add_player
-    @new_game.add_player_info('maria', 7)
-    @new_game.add_player_info('chico', 3)
-    @new_game.add_player_info('augusto')
+    @new_game.add_kill_info('<world>', 'maria', 'MOD_TRIGGER_HURT')
+    @new_game.add_kill_info('chico', 'maria', 'MOD_ROCKET_SPLASH')
+    @new_game.add_kill_info('augusto', 'chico', 'MOD_ROCKET')
 
     assert_equal 3, @new_game.game['players'].size
     assert_equal 3, @new_game.game['kills'].size
-    assert_equal 7, @new_game.game['kills']['maria']
-    assert_equal 0, @new_game.game['kills']['augusto']
+    assert_equal -1, @new_game.game['kills']['maria']
+    assert_equal 1, @new_game.game['kills']['chico']
+    assert_equal 1, @new_game.game['kills']['augusto']
 
-    assert_equal 10, @new_game.game['total_kills']
+    assert_equal 3, @new_game.game['total_kills']
 
-    @new_game.add_player_info('<world>', 1)
-    @new_game.add_player_info('maria', 7)
-    @new_game.add_player_info('chico', 3)
-    @new_game.add_player_info('augusto')
+    @new_game.add_kill_info('<world>', 'chico', 'MOD_TRIGGER_HURT')
+    @new_game.add_kill_info('<world>', 'chico', 'MOD_ROCKET_SPLASH')
+    @new_game.add_kill_info('augusto', 'chico', 'MOD_ROCKET')
 
     assert_equal 3, @new_game.game['players'].size
     assert_equal 3, @new_game.game['kills'].size
-    assert_equal 14, @new_game.game['kills']['maria']
-    assert_equal 0, @new_game.game['kills']['augusto']
+    assert_equal -1, @new_game.game['kills']['chico']
+    assert_equal 2, @new_game.game['kills']['augusto']
 
-    assert_equal 21, @new_game.game['total_kills']
+    assert_equal 6, @new_game.game['total_kills']
   end
 end

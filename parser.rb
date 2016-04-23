@@ -29,12 +29,7 @@ class Parser
       if @txt_array[i].include? kill_string
         kill_info = parse_kill_str @txt_array[i]
 
-        @games[-1].add_player_info(kill_info[0], 1)
-        if kill_info[0] == '<world>'
-          @games[-1].add_player_info(kill_info[1], -1)
-        else
-          @games[-1].add_player_info(kill_info[1])
-        end
+        @games[-1].add_kill_info kill_info[0], kill_info[1], kill_info[2]
       end
       i += 1
     end

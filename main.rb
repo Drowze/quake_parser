@@ -1,7 +1,7 @@
 require_relative './parser.rb'
 require_relative './game.rb'
 
-new_parser = Parser.new 'games.log'
+new_parser = Parser.new File.join(File.dirname(__FILE__), 'games.log')
 games = new_parser.process_file
 
 # Pretty-printing the whole-hash (Task 2)

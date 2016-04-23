@@ -3,7 +3,7 @@ require_relative '../parser.rb'
 
 class ParserTests < Minitest::Test
   def setup
-    @parser = Parser.new '../games.log'
+    @parser = Parser.new File.join(File.dirname(__FILE__), 'dummy.log')
   end
 
   def test_types
@@ -30,5 +30,14 @@ class ParserTests < Minitest::Test
     assert_equal 'Assasinu Credi', result3[0]
     assert_equal 'Dono da Bola', result3[1]
     assert_equal 'MOD_ROCKET_SPLASH', result3[2]
+  end
+
+  def test_processor
+    @parser.process_file
+
+    assert_equal 18, @parser.games[0].game['total_kills']
+    assert_equal 23, @parser.games[1].game['total_kills']
+    assert_equal 4, @parser.games[0].game['players'].size
+    assert_equal @parser.games[0].game['kills'].size, @parser.games[0].game['players'].size
   end
 end

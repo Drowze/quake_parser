@@ -9,16 +9,26 @@ class Game
     @game['kills'] = {} # player => n kills
   end
 
-  def add_player_info(player, kills = 0) # most likely kills will be 0 or 1
-    unless player == '<world>'
-      if @game['players'].include? player
-        @game['kills'][player] += kills
-      else
-        @game['players'] << player
-        @game['kills'][player] = kills
-      end
+  def add_kill_info(killer, killed, method)
+    include_new_players(killer, killed)
+
+    @game['total_kills'] += 1
+    if killer == '<world>'
+      @game['kills'][killed] -= 1
+    else
+      @game['kills'][killer] += 1
     end
-    @game['total_kills'] += kills
+  end
+
+  def include_new_players(killer, killed)
+    if !@game['players'].include? killer and killer != '<world>'
+      @game['players'] << killer
+      @game['kills'][killer] = 0
+    end
+    if !@game['players'].include? killed
+      @game['players'] << killed
+      @game['kills'][killed] = 0
+    end
   end
 
   # rubocop:disable all
