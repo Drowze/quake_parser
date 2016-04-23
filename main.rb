@@ -32,4 +32,4 @@ games.each do |game|
   end
 end
 
-puts "General Ranking:", ranking.sort_by { |_k, v| -v }.to_h.map { |k, v| "#{k} => #{v}" }
+puts "General Ranking:", ranking.sort_by { |_k, v| -v }.to_h.map { |k, v| "#{k}: #{v}" }
